@@ -84,7 +84,6 @@ namespace CompresserClient
 			this.chart1.Size = new System.Drawing.Size(1100, 800);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
-			this.chart1.Click += new System.EventHandler(this.chart1_Click);
 			// 
 			// button1
 			// 
@@ -105,7 +104,6 @@ namespace CompresserClient
 			this.checkboxLZW.TabIndex = 2;
 			this.checkboxLZW.Text = "LZW";
 			this.checkboxLZW.UseVisualStyleBackColor = true;
-			this.checkboxLZW.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
 			// checkboxRLE
 			// 

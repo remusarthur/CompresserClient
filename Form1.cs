@@ -214,18 +214,5 @@ namespace CompresserClient
 			await Task.Factory.StartNew(() => SCClient.CompressFiles(targetDirectory, mode, progress, radioButtonTime.Checked),
 										TaskCreationOptions.LongRunning);
         }
-
-		private void checkBox1_CheckedChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void chart1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		
- 
     }
 }
