@@ -213,6 +213,7 @@ namespace CompresserClient
 			
 			await Task.Factory.StartNew(() => SCClient.CompressFiles(targetDirectory, mode, progress, radioButtonTime.Checked),
 										TaskCreationOptions.LongRunning);
+
         }
     }
 }
