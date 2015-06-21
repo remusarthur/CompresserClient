@@ -35,6 +35,7 @@ namespace CompresserClient
 			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
 			this.button1 = new System.Windows.Forms.Button();
 			this.checkboxLZW = new System.Windows.Forms.CheckBox();
@@ -44,6 +45,7 @@ namespace CompresserClient
 			this.radioButtonTime = new System.Windows.Forms.RadioButton();
 			this.radioButtonSize = new System.Windows.Forms.RadioButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.checkboxHuffman = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -54,51 +56,58 @@ namespace CompresserClient
 			this.chart1.ChartAreas.Add(chartArea1);
 			legend1.Name = "Legend1";
 			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(12, 12);
+			this.chart1.Location = new System.Drawing.Point(12, 1);
 			this.chart1.Name = "chart1";
-			series1.BorderWidth = 3;
+			series1.BorderWidth = 4;
 			series1.ChartArea = "ChartArea1";
 			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 			series1.Legend = "Legend1";
 			series1.Name = "RLE";
-			series2.BorderWidth = 3;
+			series2.BorderWidth = 4;
 			series2.ChartArea = "ChartArea1";
 			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 			series2.Legend = "Legend1";
 			series2.Name = "LZW";
-			series3.BorderWidth = 3;
+			series3.BorderWidth = 4;
 			series3.ChartArea = "ChartArea1";
 			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series3.Color = System.Drawing.Color.ForestGreen;
 			series3.Legend = "Legend1";
-			series3.Name = "SMART";
-			series4.BorderWidth = 3;
+			series3.Name = "HUFFMAN";
+			series4.BorderWidth = 4;
 			series4.ChartArea = "ChartArea1";
 			series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series4.Color = System.Drawing.Color.Orchid;
 			series4.Legend = "Legend1";
 			series4.Name = "MULAW";
+			series5.BorderWidth = 4;
+			series5.ChartArea = "ChartArea1";
+			series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series5.Color = System.Drawing.Color.ForestGreen;
+			series5.Legend = "Legend1";
+			series5.Name = "SMART";
 			this.chart1.Series.Add(series1);
 			this.chart1.Series.Add(series2);
 			this.chart1.Series.Add(series3);
 			this.chart1.Series.Add(series4);
-			this.chart1.Size = new System.Drawing.Size(1100, 800);
+			this.chart1.Series.Add(series5);
+			this.chart1.Size = new System.Drawing.Size(1300, 800);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(992, 158);
+			this.button1.Location = new System.Drawing.Point(1161, 456);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.Size = new System.Drawing.Size(90, 28);
 			this.button1.TabIndex = 1;
-			this.button1.Text = "button1";
+			this.button1.Text = "Start";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// checkboxLZW
 			// 
 			this.checkboxLZW.AutoSize = true;
-			this.checkboxLZW.Location = new System.Drawing.Point(987, 217);
+			this.checkboxLZW.Location = new System.Drawing.Point(1175, 204);
 			this.checkboxLZW.Name = "checkboxLZW";
 			this.checkboxLZW.Size = new System.Drawing.Size(50, 17);
 			this.checkboxLZW.TabIndex = 2;
@@ -108,7 +117,7 @@ namespace CompresserClient
 			// checkboxRLE
 			// 
 			this.checkboxRLE.AutoSize = true;
-			this.checkboxRLE.Location = new System.Drawing.Point(987, 240);
+			this.checkboxRLE.Location = new System.Drawing.Point(1174, 181);
 			this.checkboxRLE.Name = "checkboxRLE";
 			this.checkboxRLE.Size = new System.Drawing.Size(47, 17);
 			this.checkboxRLE.TabIndex = 3;
@@ -118,7 +127,7 @@ namespace CompresserClient
 			// checkboxMULAW
 			// 
 			this.checkboxMULAW.AutoSize = true;
-			this.checkboxMULAW.Location = new System.Drawing.Point(987, 263);
+			this.checkboxMULAW.Location = new System.Drawing.Point(1174, 250);
 			this.checkboxMULAW.Name = "checkboxMULAW";
 			this.checkboxMULAW.Size = new System.Drawing.Size(59, 17);
 			this.checkboxMULAW.TabIndex = 4;
@@ -128,7 +137,7 @@ namespace CompresserClient
 			// checkboxSMART
 			// 
 			this.checkboxSMART.AutoSize = true;
-			this.checkboxSMART.Location = new System.Drawing.Point(987, 286);
+			this.checkboxSMART.Location = new System.Drawing.Point(1175, 273);
 			this.checkboxSMART.Name = "checkboxSMART";
 			this.checkboxSMART.Size = new System.Drawing.Size(64, 17);
 			this.checkboxSMART.TabIndex = 5;
@@ -161,18 +170,29 @@ namespace CompresserClient
 			// 
 			this.groupBox1.Controls.Add(this.radioButtonTime);
 			this.groupBox1.Controls.Add(this.radioButtonSize);
-			this.groupBox1.Location = new System.Drawing.Point(975, 356);
+			this.groupBox1.Location = new System.Drawing.Point(1170, 320);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(92, 100);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Measure";
 			// 
+			// checkboxHuffman
+			// 
+			this.checkboxHuffman.AutoSize = true;
+			this.checkboxHuffman.Location = new System.Drawing.Point(1174, 227);
+			this.checkboxHuffman.Name = "checkboxHuffman";
+			this.checkboxHuffman.Size = new System.Drawing.Size(78, 17);
+			this.checkboxHuffman.TabIndex = 12;
+			this.checkboxHuffman.Text = "HUFFMAN";
+			this.checkboxHuffman.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1079, 590);
+			this.ClientSize = new System.Drawing.Size(1378, 590);
+			this.Controls.Add(this.checkboxHuffman);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.checkboxSMART);
 			this.Controls.Add(this.checkboxMULAW);
@@ -203,6 +223,7 @@ namespace CompresserClient
 		private System.Windows.Forms.RadioButton radioButtonTime;
 		private System.Windows.Forms.RadioButton radioButtonSize;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckBox checkboxHuffman;
     }
 }
 

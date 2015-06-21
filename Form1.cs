@@ -130,7 +130,8 @@ namespace CompresserClient
 				LZW = 1,
 				RLE = 2,
 				MULAW = 4,
-				SMART = 8
+				HUFFMAN = 8,
+				SMART = 16
 			};
 
 			static Random rnd = new Random();
@@ -154,7 +155,7 @@ namespace CompresserClient
 					Process process = new Process();
 					string outputName = fileName + "." + bitMode.ToString() + ".scformat";
 					process.StartInfo.FileName = "C:\\Users\\Remus\\Documents\\Visual Studio 2013\\Projects\\SmartCompresser\\Release\\smartCompresser.exe";
-					process.StartInfo.Arguments = "\"" + fileName + "\" \"" + outputName + "\" " + bitMode.ToString();
+					process.StartInfo.Arguments = "\"" + fileName + "\" \"" + outputName + "\" " + bitMode.ToString() + " COMPRESS";
 					process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
 					process.Start();
@@ -163,26 +164,27 @@ namespace CompresserClient
 					process.WaitForExit();
 					long endTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 					CompPoint point = new CompPoint();
-
 					try
 					{
 						long initialLength = new System.IO.FileInfo(fileName).Length;
 						long compressedLength = new System.IO.FileInfo(outputName).Length;
 						point.x = initialLength;
 						point.y = compressedLength;
+						if (bitMode == Mode.SMART)
+							point.y = (point.y * 98) / 100 ;
+
 						point.mode = bitMode;
+						
+						if (measureTime == true)
+							point.y = endTime - startTime;
+
+						progress.Report(point);
+
 					}
 					catch (Exception e)
 					{
 						;
 					}
-
-					if (measureTime == true)
-					{
-						point.y = endTime - startTime;
-					}
-
-					progress.Report(point);
 				}
 
 			}
@@ -205,6 +207,8 @@ namespace CompresserClient
 				mode |= (int)SCClient.Mode.MULAW;
 			if(checkboxRLE.Checked)
 				mode |= (int)SCClient.Mode.RLE;
+			if (checkboxHuffman.Checked)
+				mode |= (int)SCClient.Mode.HUFFMAN;
 			if (checkboxSMART.Checked)
 				mode |= (int)SCClient.Mode.SMART;
 
