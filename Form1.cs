@@ -39,6 +39,8 @@ namespace CompresserClient
 
 			chart1.ChartAreas["ChartArea1"].AxisX.ScaleView.Zoomable = true;
 			chart1.ChartAreas["ChartArea1"].AxisY.ScaleView.Zoomable = true;
+			chart1.ChartAreas[0].AxisX.Minimum = 0;
+			chart1.ChartAreas[0].AxisY.Minimum = 0;
 
 			//chart.MouseWheel += new MouseEventHandler(chart_MouseWheel);
 		}
@@ -119,7 +121,10 @@ namespace CompresserClient
 
 			foreach (CompPoint p in points)
 			{
-				chart1.Series[p.mode.ToString()].Points.AddXY(p.x, p.y);
+				if (p.x == -1 && p.y == -1)
+					button1.Enabled = true;
+				else
+					chart1.Series[p.mode.ToString()].Points.AddXY(p.x, p.y);
 			}
 		}
 
@@ -192,13 +197,31 @@ namespace CompresserClient
 			public static void CompressFiles(string targetDirectory, int mode, IProgress<CompPoint> progress, bool measureTime)
 			{
 				string[] fileEntries = Directory.GetFiles(targetDirectory);
+
+				CompPoint point;
+				
+				foreach (Mode bitMode in Enum.GetValues(typeof(Mode)))
+				{
+					point = new CompPoint();
+					point.x = 0;
+					point.y = 0;
+					point.mode = bitMode;
+					progress.Report(point);
+				}
+
 				foreach (string fileName in fileEntries)
 					CompressFile(fileName, mode, progress, measureTime);
+				
+				point = new CompPoint();
+				point.x = -1;
+				point.y = -1;
+				progress.Report(point);
 			}
 		}
 
         private async void button1_Click(object sender, EventArgs e)
         {
+			button1.Enabled = false;
 			string targetDirectory = "D:\\SCDB\\";
 			int mode = 0;
 			if(checkboxLZW.Checked)
